@@ -241,6 +241,7 @@ export default {
               this.userBirthday = msg.userBirthday
               this.userHeight = msg.userHeight
               this.userWeight = msg.userWeight
+              this.userNation = msg.userNation,
               this.rowState = msg.rowState
               console.log('获取rowState',this.rowState)
             }
