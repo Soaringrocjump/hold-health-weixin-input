@@ -5,13 +5,19 @@ Vue.use(Router)
 export default new Router({
   // mode:'history',
   routes: [
+    //邀约广告
+    {
+      path: '/invitationAdv',
+      name: 'invitationAdv',
+      component: () => import ("@/components/page/invitationAdv")
+    },
     //提交预约信息
     {
-      path: '/',
+      path: '/fillAppointment',
       name: 'fillAppointment',
       component: () => import ("@/components/page/fillAppointment")
     },
-    //面对面邀约修改
+    //面对面邀约客户修改
     {
       path: '/scanCodeFill',
       name: 'scanCodeFill',

@@ -57,13 +57,14 @@ export default {
   data () {
     return {
       show: false,
-      currentDate: new Date(),
-      minDate: new Date(1900, 1, 1),
+      currentDate: new Date(1980, 0, 1),
+      minDate: new Date(1949, 0, 1),
       maxDate: new Date(),
       staffCode: 'tests81',
       userName: '',
       userGender: '',
       selBirth: '',
+      userAge: '',
       remark: '',
       openId: ''
     };
@@ -89,11 +90,16 @@ export default {
       console.log('selBirth',this.selBirth)
       console.log('remark',this.remark)
       console.log('openId',this.openId)
+      let thisYear = new Date().getFullYear()
+      let birthyear = this.selBirth.getFullYear()
+      this.userAge = thisYear - birthyear
+      console.log('userAge',this.userAge)
       if(
         this.staffCode !== '' &&
         this.userName !== '' &&
         this.userGender !== '' &&
-        this.selBirth !== ''
+        this.selBirth !== '' &&
+        this.userAge !== ''
       ){
         console.log("输入完成")
         this.$axios({
@@ -103,7 +109,8 @@ export default {
             staffCode: this.staffCode,
             userName: this.userName,
             userGender: this.userGender,
-            selBirth: this.selBirth,
+            userBirthday: this.selBirth,
+            userAge: this.userAge,
             remark: this.remark,
             wxOpenid: this.openId
           }

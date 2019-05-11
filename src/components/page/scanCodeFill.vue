@@ -34,11 +34,11 @@
       </dl>
       <dl>
         <dt>身高（厘米 cm）<span class="nes">*</span></dt>
-        <dd><input type="text" v-model="userHeight" placeholder="请输入您的身高"></dd>
+        <dd><input type="number" v-model="userHeight" placeholder="请输入您的身高"></dd>
       </dl>
       <dl>
         <dt>体重（公斤 kg）<span class="nes">*</span></dt>
-        <dd><input type="text" v-model="userWeight" placeholder="请输入您的体重"></dd>
+        <dd><input type="number" v-model="userWeight" placeholder="请输入您的体重"></dd>
       </dl>
       <dl>
         <dt>民族<span class="nes">*</span></dt>
@@ -88,6 +88,7 @@ export default {
       userName: '',
       userGender: '',
       userBirthday: '',
+      userAge: '',
       userHeight: '',
       userWeight: '',
       userNation: '',
@@ -111,8 +112,10 @@ export default {
     //生日确认
     onConfirm(val){
       console.log('确认',val)
-      this.show1 = false
       this.userBirthday = val
+      let birthYear = val.getFullYear()
+      console.log('birthYear',birthYear)
+      this.show1 = false
     },
     //点击省市区
     areaSelect(){
@@ -137,13 +140,26 @@ export default {
       console.log('提交信息')
       console.log('userName',this.userName)
       console.log('userGender',this.userGender)
-      console.log('selBirth',this.selBirth)
+      console.log('userBirthday',this.userBirthday)
       console.log('selArea',this.selArea)
       console.log('userHeight',this.userHeight)
       console.log('userWeight',this.userWeight)
       console.log('userNation',this.userNation)
       console.log('rowState',this.rowState)
       console.log('orderCode',this.orderCode)
+      console.log('typeof',typeof (this.userBirthday))
+      if(typeof (this.userBirthday) == 'number'){
+        let thisYear = new Date().getFullYear()
+        let birthYear = new Date(this.userBirthday).getFullYear()
+        this.userAge = thisYear - birthYear
+        console.log('userAge',this.userAge)
+      }else{
+        let thisYear = new Date().getFullYear()
+        let birthYear = this.userBirthday.getFullYear()
+        this.userAge = thisYear - birthYear
+        console.log('userAge',this.userAge)
+      }
+      
       if(
         this.staffCode !== '' &&
         this.userName !== '' &&
@@ -152,9 +168,7 @@ export default {
         this.selArea !== '' &&
         this.userHeight !== '' &&
         this.userWeight !== '' &&
-        this.userNation !== '' &&
-        this.rowState !== '' &&
-        this.orderCode !== ''
+        this.userNation !== ''
       ){
         console.log("输入完成")
         this.$axios({
@@ -165,17 +179,16 @@ export default {
             userName: this.userName,
             userGender: this.userGender,
             userBirthday: this.userBirthday,
-            // userAddress: this.selArea,
+            userAge: this.userAge,
             userHeight: this.userHeight,
             userWeight: this.userWeight,
             userNation: this.userNation,
             orderCode: this.orderCode,
             wxOpenid: this.openId
-            // rowState: this.rowState
           }
         })
           .then(result => {
-            console.log('result',result);
+            console.log('submit-result',result);
             if (result.data.resultCode == "200"){
               var msg = result.data.data
               this.$router.push({
@@ -195,7 +208,17 @@ export default {
             alert("错误：获取数据异常" + err);
           });
       }else{
-        alert("请将信息填写完整！")
+        alert("请将信息填写完整")
+        // alert(
+        //   "rowState",this.rowState,
+        //   "staffCode",this.staffCode,
+        //   "userName",this.userName,
+        //   "userGender",this.userGender,
+        //   "userBirthday",this.userBirthday,
+        //   "userNation",this.userNation,
+        //   "orderCode",this.orderCode,
+        //   "selArea",this.selArea
+        // )
       }
     },
     //根据orderCode获取信息
@@ -208,7 +231,7 @@ export default {
         }
       })
         .then(result => {
-          console.log('result',result);
+          console.log('getInfo-result',result);
           if (result.data.resultCode == "200"){
             var msg = result.data.data
             if(msg != null){
@@ -219,6 +242,7 @@ export default {
               this.userHeight = msg.userHeight
               this.userWeight = msg.userWeight
               this.rowState = msg.rowState
+              console.log('获取rowState',this.rowState)
             }
           }else{
             alert(result.data.message)
@@ -250,14 +274,22 @@ export default {
     }
   },
   mounted(){
-    let orderCode = this.$route.query.orderCode
-    console.log("获取地址栏参数",orderCode)
-    this.orderCode = orderCode
-    this.getInfo(orderCode)
-    let openId = this.$route.query.openId
-    console.log("获取地址栏参数openId",openId)
-    this.openId = openId
     this.getNation()
+    let query = this.$route.query
+    console.log('query',query)
+    if(query.orderCode){
+      this.orderCode = this.$route.query.orderCode
+      console.log("getInfo")
+      this.getInfo(this.orderCode)
+    }
+    
+    if(query.openId){
+      this.openId = this.$route.query.openId
+    }
+    if(query.staffCode){
+      this.staffCode = this.$route.query.staffCode
+    }
+    console.log("获取地址栏参数")
   }
 }
 
