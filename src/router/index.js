@@ -28,12 +28,6 @@ export default new Router({
       path: '/fillSuccess',
       name: 'fillSuccess',
       component: () => import ("@/components/page/fillSuccess")
-    },
-    //webview测试
-    {
-      path: '/webview',
-      name: 'webview',
-      component: () => import ("@/components/page/webview")
-    },
+    }
   ]
 })

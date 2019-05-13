@@ -1,6 +1,6 @@
-<!-- 确认发布 -->
+<!-- 邀约广告页面 -->
 <template>
-  <div class="confirmShare">
+  <div class="invitationAdv">
     <TopBg>
       <div class="slogan">
         <img src="~IMG/login-slogan.png" alt="">
@@ -25,9 +25,9 @@
       <div class="personal-add">
         请点击二维码名片添加我的微信
       </div>
-      <!-- <div class="personal-input">
-        <p>我是{{basicInfo.userName}}，我的健康专员工号为{{basicInfo.staffCode}},很高兴您能百忙之中接收我的健康邀约，我的电话是  （微信），您可以随时联系我咨询预约事宜，期待您的电话！</p>
-      </div> -->
+      <div class="personal-remark">
+        <p>{{remark}}</p>
+      </div>
     </div>
     <div class="gradient-txt">
       <img src="~IMG/invitation-txt1.png" alt="">
@@ -54,6 +54,8 @@ export default {
     return {
       show: false,
       staffCode: '',
+      openId: '',
+      remark: ''
     };
   },
   components:{
@@ -64,13 +66,17 @@ export default {
       this.$router.push({
         path: '/fillAppointment',
         query:{
-          staffCode: this.staffCode
+          staffCode: this.staffCode,
+          openId: this.openId
         }
       })
     }
   },
   mounted(){
     this.staffCode = this.$route.query.staffCode
+    this.openId = this.$route.query.openId
+    this.remark = this.$route.query.remark
+    console.log("url参数staffCode",this.staffCode,"url参数openId",this.openId,"url参数remark",this.remark)
   }
 }
 
