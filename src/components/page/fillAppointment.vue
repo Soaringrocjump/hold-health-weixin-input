@@ -62,7 +62,7 @@ export default {
       maxDate: new Date(),
       staffCode: 'tests81',
       userName: '',
-      userGender: '',
+      userGender: '男',
       selBirth: '',
       userAge: '',
       remark: '',

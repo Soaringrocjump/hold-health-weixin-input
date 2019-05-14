@@ -86,12 +86,12 @@ export default {
       maxDate: new Date(),
       staffCode: '',
       userName: '',
-      userGender: '',
+      userGender: '男',
       userBirthday: '',
       userAge: '',
       userHeight: '',
       userWeight: '',
-      userNation: '',
+      userNation: '1',
       nation: [],
       areaList: areaData,
       selArea: '',
@@ -136,8 +136,8 @@ export default {
       let val = picker.getValues();
       console.log(val)
     },
+    //提交信息
     submit(){
-      console.log('提交信息')
       console.log('userName',this.userName)
       console.log('userGender',this.userGender)
       console.log('userBirthday',this.userBirthday)

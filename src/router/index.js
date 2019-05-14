@@ -7,7 +7,7 @@ export default new Router({
   routes: [
     //邀约广告
     {
-      path: '/invitationAdv',
+      path: '/',
       name: 'invitationAdv',
       component: () => import ("@/components/page/invitationAdv")
     },
