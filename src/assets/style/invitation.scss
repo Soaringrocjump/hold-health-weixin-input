@@ -104,7 +104,7 @@
     width:750px;
     height:510px;
     overflow: hidden;
-    background: url(~IMG/big-top.png),linear-gradient(90deg,rgba(106,99,242,1),rgba(186,54,229,1));
+    background: url(https://m.hfieta.com/html/wx/static/img/big-top.e769f74.png),linear-gradient(90deg,rgba(106,99,242,1),rgba(186,54,229,1));
     background-size: 100%;
     background-repeat: no-repeat;
     .slogan{
@@ -246,26 +246,58 @@
     border:1px solid rgba(232, 232, 232, 1);
     box-shadow:4px 3px 20px 0px rgba(0, 0, 0, 0.25);
     border-radius:25px;
-    padding: 15px 0;
+    padding: 36px 0 38px;
     overflow: hidden;
     li{
-      height: 155px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 24px 0 32px;
-      .invitation-service{
-        width: 490px;
-        height: 113px;
+      // height: 155px;
+      // display: flex;
+      // justify-content: space-between;
+      // align-items: center;
+      .service-control{
+        width: 100%;
+        padding: 0 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .left-img{
+          width: 490px;
+          height: 113px;
+        }
+        .right-control{
+          width: 49px;
+          height: 49px;
+          transition: .3s;
+        }
+        .rotate-up{
+          transform: rotate(180deg);
+        }
       }
-      .arrow{
-        width: 49px;
-        height: 49px;
+      .service-collapse{
+        border-top: 1px solid #DADADA;
+        padding: 20px 12px;
+        margin-top: 20px;
+        will-change: height;
+        transition: height 0.3s ease-in-out;
+        .collapse-box{
+          border-radius: 10px;
+          overflow: hidden;
+        }
+      }
+      .collapse-open{
+        display: block;
+      }
+      .collapse-close{
+        display: none;
       }
     }
     // li~li{
     //   border-top: 1px solid #DADADA;
     // }
+  }
+  .block{
+    background: #fff;
+    width: 750px;
+    height: 300px;
   }
   .confirmBtn{
     width:550px;

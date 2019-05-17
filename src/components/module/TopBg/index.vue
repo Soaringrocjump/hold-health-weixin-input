@@ -1,18 +1,12 @@
 <!-- 头部背景 -->
 <template>
-  <div :class="[ gray ? 'gray' : 'top-background']">
+  <div class="top-background">
     <slot/>
   </div>
 </template>
 
 <script>
 export default {
-  props:{
-    gray:{
-      type: Boolean,
-      default: false
-    }
-  },
   data () {
     return {
     };
@@ -25,14 +19,8 @@ export default {
   width:750px;
   height:260px;
   overflow: hidden;
-  background: url(~IMG/personal-top.png),linear-gradient(90deg,rgba(106,99,242,1),rgba(186,54,229,1));
-  background-size: contain;
-}
-.gray{
-  width:750px;
-  height:260px;
-  overflow: hidden;
-  background: url(~IMG/personal-top.png),#3c4154;
-  background-size: contain;
+  background: url(https://m.hfieta.com/html/wx/static/img/big-top.e769f74.png),linear-gradient(90deg,rgba(106,99,242,1),rgba(186,54,229,1));
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 </style>

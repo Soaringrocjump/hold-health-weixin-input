@@ -25,7 +25,7 @@
       <div class="personal-add">
         请点击二维码名片添加我的微信
       </div>
-      <div class="personal-remark">
+      <div class="personal-remark" v-if="remark">
         <p>{{remark}}</p>
       </div>
     </div>
@@ -39,11 +39,19 @@
           <img :src="item.serviceImg" alt="">
         </li> -->
         <li>
-          <img src="~IMG/invitation-service1.png" alt="">
+          <div class="service-control">
+            <div class="left-img"><img src="~IMG/invitation-service5.png" alt=""></div>
+            <div :class="[ visible ? 'rotate-up' : '','right-control']" @click="control"><img src="~IMG/invitation-arrow.png" alt=""></div>
+          </div>
+          <div :class="[ visible ? 'collapse-open' : 'collapse-close','service-collapse']">
+            <div class="collapse-box">
+              <img v-for="(img,index) in imageList" :key="index" :src="img.path" >
+            </div>
+          </div>
         </li>
       </ul>
     </div>
-    <div class="confirmBtn" @click="jump" >已确认，填写邀约</div>
+    <div class="confirmBtn" @click="jump" >我要预约</div>
   </div>
 </template>
 
@@ -52,10 +60,25 @@ import TopBg from 'Module/TopBg'
 export default {
   data () {
     return {
-      show: false,
+      activeNames: '1',
+      visible: false,
       staffCode: '',
       openId: '',
-      remark: ''
+      remark: '',
+      imageList: [
+        {
+          path: require('@/assets/img/hold-health1.png')
+        },
+        {
+          path: require('@/assets/img/hold-health2.png')
+        },
+        {
+          path: require('@/assets/img/hold-health3.png')
+        },
+        {
+          path: require('@/assets/img/hold-health4.png')
+        }
+      ]
     };
   },
   components:{
@@ -70,6 +93,9 @@ export default {
           openId: this.openId
         }
       })
+    },
+    control(){
+      this.visible = !this.visible
     }
   },
   mounted(){

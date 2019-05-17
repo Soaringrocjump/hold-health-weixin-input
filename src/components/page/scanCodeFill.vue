@@ -19,56 +19,76 @@
       <dl>
         <dt>性别<span class="nes">*</span></dt>
         <dd>
-          <!-- <span class="arrow"><img src="~IMG/down.png" alt=""></span> -->
-          <select v-model="userGender">
+          <span class="arrow"><img src="~IMG/down.png" alt=""></span>
+          <input type="text" placeholder="请选择您的性别" :value="userGender" readonly="readonly" @click="genderSelect">
+          <!-- <select v-model="userGender">
             <option value="男">男</option>
             <option value="女">女</option>
-          </select>
+          </select> -->
         </dd>
       </dl>
       <dl>
         <dt>生日<span class="nes">*</span></dt>
         <dd>
+          <span class="arrow"><img src="~IMG/down.png" alt=""></span>
           <input type="text" placeholder="请输入您的生日" :value="userBirthday | formatterDate" readonly="readonly" @click="birthSelect">
         </dd>
       </dl>
       <dl>
         <dt>身高（厘米 cm）<span class="nes">*</span></dt>
-        <dd><input type="number" v-model="userHeight" placeholder="请输入您的身高"></dd>
+        <dd><input type="number" v-model="userHeight"  placeholder="请输入您的身高"></dd>
       </dl>
       <dl>
         <dt>体重（公斤 kg）<span class="nes">*</span></dt>
-        <dd><input type="number" v-model="userWeight" placeholder="请输入您的体重"></dd>
+        <dd><input type="number" v-model="userWeight"  placeholder="请输入您的体重"></dd>
       </dl>
       <dl>
         <dt>民族<span class="nes">*</span></dt>
         <dd>
+          <span class="arrow"><img src="~IMG/down.png" alt=""></span>
+          <input type="text" placeholder="请选择您的民族" :value="userNation | matchNation" readonly="readonly" @click="nationSelect">
           <!-- <span class="arrow"><img src="~IMG/down.png" alt=""></span> -->
-          <select v-model="userNation">
+          <!-- <select v-model="userNation">
             <option v-for="(item,index) in nation" :key="index" :value="item.code">{{item.name}}</option>
-          </select>
+          </select> -->
         </dd>
       </dl>
       <dl>
         <dt>常住地<span class="nes">*</span></dt>
         <dd>
+          <span class="arrow"><img src="~IMG/down.png" alt=""></span>
           <input type="text" placeholder="省市区选择" :value="selArea" readonly="readonly" @click="areaSelect">
         </dd>
       </dl>
       <div class="confirmBtn" @click="submit">确认</div>
     </div>
-    <van-popup v-model="show1" position="bottom" :overlay="true">
+    <van-popup v-model="show" position="bottom" :overlay="false">
+      <van-picker 
+        v-show="genderSel" 
+        :show-toolbar="true"
+        :columns="gender" 
+        @cancel="cancel" 
+        @confirm="genderConfirm" />
+      <van-picker 
+        v-show="nationSel" 
+        :show-toolbar="true"
+        :columns="nation" 
+        @cancel="cancel" 
+        @confirm="nationConfirm" />
       <van-datetime-picker
+        v-show="dateSel"
         v-model="currentDate"
         type="date"
-        @cancel="show1 = false" 
-        @confirm="onConfirm" 
+        @cancel="cancel" 
+        @confirm="dateConfirm" 
         :min-date="minDate"
-        :max-date="maxDate"
-      />
-    </van-popup>
-    <van-popup v-model="show2" position="bottom" :overlay="true">
-      <van-area :area-list="areaList" :columns-num="3" @cancel="show2 = false" @confirm="onConfirm2" @change="onChange2" title="请先选择地址" />
+        :max-date="maxDate"/>
+      <van-area 
+        v-show="areaSel" 
+        :area-list="areaList" 
+        :columns-num="3" 
+        @cancel="cancel" 
+        @confirm="areaConfirm" />
     </van-popup>
   </div>
 </template>
@@ -76,23 +96,28 @@
 <script>
 import TopBg from 'Module/TopBg'
 import areaData from '@/assets/js/area'
+import nationArr from '@/assets/js/nation'
 export default {
   data () {
     return {
-      show1: false,
-      show2: false,
+      show: false,
+      dateSel: false,
+      areaSel: false,
+      genderSel: false,
+      nationSel: false,
+      gender: ['男','女'],
       currentDate: new Date(1980, 0, 1),
       minDate: new Date(1949, 0, 1),
       maxDate: new Date(),
       staffCode: '',
       userName: '',
-      userGender: '男',
+      userGender: '',
       userBirthday: '',
       userAge: '',
       userHeight: '',
       userWeight: '',
-      userNation: '1',
-      nation: [],
+      userNation: '',
+      nation: nationArr,
       areaList: areaData,
       selArea: '',
       rowState: '',
@@ -104,25 +129,69 @@ export default {
   components:{
     TopBg
   },
+  watch:{
+    userHeight(val){
+      let integerVal = parseInt(val)
+      this.userHeight = integerVal
+    },
+    userWeight(val){
+      let integerVal = parseInt(val)
+      this.userWeight = integerVal
+    }
+  },
   methods:{
+    cancel(){
+      this.show = false
+      this.dateSel = false
+      this.areaSel = false
+      this.genderSel = false
+      this.nationSel = false
+    },
+    //点击性别
+    genderSelect(){
+      this.show = true
+      this.genderSel = true
+    },
+    //确认性别
+    genderConfirm(value) {
+      console.log('当前值',value)
+      this.userGender = value
+      this.genderSel = false
+      this.show = false
+    },
+    //点击民族
+    nationSelect(){
+      this.show = true
+      this.nationSel = true
+    },
+    //确认民族
+    nationConfirm(value){
+      console.log('当前值',value)
+      this.userNation = value.code
+      this.nationSel = false
+      this.show = false
+    },
     //点击生日
     birthSelect(){
-      this.show1 = true
+      this.show = true
+      this.dateSel = true
     },
     //生日确认
-    onConfirm(val){
+    dateConfirm(val){
       console.log('确认',val)
       this.userBirthday = val
       let birthYear = val.getFullYear()
       console.log('birthYear',birthYear)
-      this.show1 = false
+      this.dateSel = false
+      this.show = false
     },
     //点击省市区
     areaSelect(){
-      this.show2 = true
+      this.show = true
+      this.areaSel = true
     },
     //省市区确认
-    onConfirm2(val){
+    areaConfirm(val){
       console.log('确认',val)
       let areaArr = []
       val.forEach(el => {
@@ -130,7 +199,8 @@ export default {
       });
       console.log("areaArr",areaArr)
       this.selArea = areaArr.join('')
-      this.show2 = false
+      this.areaSel = false
+      this.show = false
     },
     onChange2(picker){
       let val = picker.getValues();
@@ -176,7 +246,7 @@ export default {
           url: "order/orderEdit?rowState="+this.rowState+"&userAddress="+this.selArea,
           data: {
             staffCode: this.staffCode,
-            userName: this.userName,
+            userName: this.userName.trim(),
             userGender: this.userGender,
             userBirthday: this.userBirthday,
             userAge: this.userAge,
@@ -193,36 +263,22 @@ export default {
               var msg = result.data.data
               this.$router.push({
                 path: '/fillSuccess'
-                // query: { 
-                //   orderCode: this.orderCode,
-                //   userName: msg.userName,
-                //   userGender: msg.userGender,
-                //   postTime: msg.postTime
-                // }
               })
             }else{
               alert(result.data.message)
             }
           })
           .catch(err => {
-            alert("错误：获取数据异常" + err);
+            alert("网络请求超时！");
+            console.log("错误：提交数据异常" + err);
           });
       }else{
         alert("请将信息填写完整")
-        // alert(
-        //   "rowState",this.rowState,
-        //   "staffCode",this.staffCode,
-        //   "userName",this.userName,
-        //   "userGender",this.userGender,
-        //   "userBirthday",this.userBirthday,
-        //   "userNation",this.userNation,
-        //   "orderCode",this.orderCode,
-        //   "selArea",this.selArea
-        // )
       }
     },
     //根据orderCode获取信息
     getInfo(orderCode){
+      console.log('进入getInfo',orderCode);
       this.$axios({
         method: "post",
         url: "order/orderDetail",
@@ -250,7 +306,8 @@ export default {
           }
         })
         .catch(err => {
-          alert("错误：获取数据异常" + err);
+            alert("网络异常，获取客户信息失败！");
+            console.log("错误：获取客户信息异常" + err);
         });
     },
     //获取民族字典
@@ -270,30 +327,29 @@ export default {
           }
         })
         .catch(err => {
-          alert("错误：获取数据异常" + err);
+          alert("网络异常，获取民族信息失败！");
+          console.log("错误：获取民族信息异常" + err);
         });
     }
   },
   mounted(){
-    this.getNation()
+    // this.getNation()
     let query = this.$route.query
     console.log('query',query)
     if(query.orderCode){
-      this.orderCode = this.$route.query.orderCode
-      console.log("getInfo")
+      this.orderCode = query.orderCode
+      console.log("getInfo",this.orderCode)
       this.getInfo(this.orderCode)
     }
-    
     if(query.openId){
-      this.openId = this.$route.query.openId
+      this.openId = query.openId
     }
     if(query.staffCode){
-      this.staffCode = this.$route.query.staffCode
+      this.staffCode = query.staffCode
     }
-    console.log("获取地址栏参数")
+    console.log("获取地址栏参数",this.orderCode,this.openId,this.staffCode)
   }
 }
-
 </script>
 <style lang='scss'>
 @import "@/assets/style/invitation.scss";

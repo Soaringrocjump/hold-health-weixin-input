@@ -62,7 +62,7 @@ export default {
       maxDate: new Date(),
       staffCode: 'tests81',
       userName: '',
-      userGender: '男',
+      userGender: '',
       selBirth: '',
       userAge: '',
       remark: '',
@@ -90,10 +90,12 @@ export default {
       console.log('selBirth',this.selBirth)
       console.log('remark',this.remark)
       console.log('openId',this.openId)
-      let thisYear = new Date().getFullYear()
-      let birthyear = this.selBirth.getFullYear()
-      this.userAge = thisYear - birthyear
-      console.log('userAge',this.userAge)
+      if(this.selBirth){
+        let thisYear = new Date().getFullYear()
+        let birthyear = this.selBirth.getFullYear()
+        this.userAge = thisYear - birthyear
+        console.log('userAge',this.userAge)
+      }
       if(
         this.staffCode !== '' &&
         this.userName !== '' &&
@@ -133,7 +135,8 @@ export default {
             }
           })
           .catch(err => {
-            alert("错误：获取数据异常" + err);
+            alert("网络请求超时！");
+            console.log("错误：获取数据异常" + err);
           });
       }else{
         alert("请将信息填写完整！")
