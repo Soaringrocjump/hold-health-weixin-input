@@ -53,5 +53,17 @@ export default new Router({
       name: 'operateGuide',
       component: () => import ("@/components/page/operateGuide")
     },
+    //活动分析
+    {
+      path: '/activityAnalysis',
+      name: 'activityAnalysis',
+      component: () => import ("@/components/page/activityAnalysis")
+    },
+    //使用分析
+    {
+      path: '/usageAnalysis',
+      name: 'usageAnalysis',
+      component: () => import ("@/components/page/usageAnalysis")
+    },
   ]
 })

@@ -1,0 +1,42 @@
+.activityAnalysis,.usageAnalysis{
+  .analysis-panel{
+    width: 750px;
+    padding: 25px 0;
+    background: #fff;
+    dt{
+      width:690px;
+      height:90px;
+      background:linear-gradient(264.81deg,rgba(106,99,242,1) 0%,rgba(186,54,229,1) 100%);
+      border-radius:10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 22px 0 28px;
+      margin-left: 25px;
+      color: #fff;
+      >*{
+        margin-left: 15px;
+      }
+      .icon{
+        margin-left: 0;
+      }
+      h2{
+        font-size: 28px;
+        white-space: nowrap;
+      }
+      h3{
+        font-size: 20px;
+      }
+      .v-line{
+        width:3px;
+        height:50px;
+        background:rgba(255,255,255,1);
+        opacity:0.7;
+      }
+    }
+  }
+  #activityVolume{
+    width: 750px;
+    height: 630px;
+  }
+}

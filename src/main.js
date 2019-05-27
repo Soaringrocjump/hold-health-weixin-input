@@ -3,8 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import axios from './axios'
 import store from './store'
+import echarts from 'echarts'//echarts图表
 import * as filters from './filters' // 全局过滤文件
 import Bridge from './config/bridge.js'
 
@@ -55,7 +55,8 @@ router.beforeEach(function (to, from, next) {
   }
 });
 
-
+//定义vue的全局构造属性
+Vue.prototype.$echarts = echarts;
 
 /* eslint-disable no-new */
 new Vue({

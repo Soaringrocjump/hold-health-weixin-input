@@ -77,6 +77,7 @@ export default {
       font-size: 30px;
       display: flex;
       align-items: center;
+      white-space: nowrap;
       i{
         height: 36px;
         font-size: 36px;
