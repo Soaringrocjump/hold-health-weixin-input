@@ -96,6 +96,7 @@ export default {
         this.userAge = thisYear - birthyear
         console.log('userAge',this.userAge)
       }
+      alert(this.userName,this.userGender,this.selBirth,this.remark,this.openId)
       if(
         this.staffCode !== '' &&
         this.userName !== '' &&
@@ -114,7 +115,8 @@ export default {
             userBirthday: this.selBirth,
             userAge: this.userAge,
             remark: this.remark,
-            wxOpenid: this.openId
+            wxOpenid: this.openId,
+            customerCode: this.openId
           }
         })
           .then(result => {
@@ -136,7 +138,7 @@ export default {
           })
           .catch(err => {
             alert("网络请求超时！");
-            console.log("错误：获取数据异常" + err);
+            // alert("错误：获取数据异常" + err);
           });
       }else{
         alert("请将信息填写完整！")

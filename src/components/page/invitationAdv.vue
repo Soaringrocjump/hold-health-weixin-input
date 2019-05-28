@@ -96,13 +96,51 @@ export default {
     },
     control(){
       this.visible = !this.visible
+    },
+    //获取openid
+    getOpenid(code){
+      this.$axios({
+        method: "get",
+        url: "wx/getOpenId?code="+code,
+      })
+        .then(result => {
+          console.log('result',result);
+          if (result.data.resultCode == "200"){
+            this.openId = result.data.data
+            // alert(this.openId)
+          }else{
+            alert(result.data.message)
+          }
+        })
+        .catch(err => {
+          alert("网络请求超时！");
+          console.log("错误：获取数据异常" + err);
+        });
     }
   },
   mounted(){
+    var getUrlParam = function(name){
+      var reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`)
+      var r = window.location.search.substr(1).match(reg)
+      if(r!=null) return unescape(r[2])
+      return null
+    }
     this.staffCode = this.$route.query.staffCode
     this.openId = this.$route.query.openId
     this.remark = this.$route.query.remark
     console.log("url参数staffCode",this.staffCode,"url参数openId",this.openId,"url参数remark",this.remark)
+    const AppId = 'wx1c9ed47be21d5efb';
+    const local = window.location.href;
+    console.log('AppId',AppId)
+    console.log('local',local)
+    if(!local.includes('code')){
+      window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${AppId}&redirect_uri=${encodeURIComponent(local)}&response_type=code&connect_redirect=1&scope=snsapi_base&state=0&#wechat_redirect`
+    }else{
+      var code = getUrlParam('code');
+      console.log(code)
+      this.getOpenid(code)
+    }
+    
   }
 }
 
