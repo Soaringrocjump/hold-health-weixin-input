@@ -108,12 +108,23 @@ export default {
           if (result.data.resultCode == "200"){
             this.openId = result.data.data
             // alert(this.openId)
+            // this.$dialog.alert({
+            //   message: '获取wxOpenId' + result.data.data
+            // }).then(() => {
+            //   // on close
+            // });
           }else{
-            alert(result.data.message)
+            // alert(result.data.message)
+            this.$dialog.alert({
+              message: '错误' + result.data.message
+            }).then(() => {
+              // on close
+            });
           }
         })
         .catch(err => {
-          alert("网络请求超时！");
+          alert("获取wxOpenId失败！");
+          // alert(err);
           console.log("错误：获取数据异常" + err);
         });
     }
@@ -129,17 +140,22 @@ export default {
     this.openId = this.$route.query.openId
     this.remark = this.$route.query.remark
     console.log("url参数staffCode",this.staffCode,"url参数openId",this.openId,"url参数remark",this.remark)
-    const AppId = 'wx1c9ed47be21d5efb';
-    const local = window.location.href;
-    console.log('AppId',AppId)
-    console.log('local',local)
-    if(!local.includes('code')){
-      window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${AppId}&redirect_uri=${encodeURIComponent(local)}&response_type=code&connect_redirect=1&scope=snsapi_base&state=0&#wechat_redirect`
-    }else{
-      var code = getUrlParam('code');
-      console.log(code)
-      this.getOpenid(code)
-    }
+    var code = getUrlParam('code');
+    console.log(code)
+    // alert(code)
+    this.getOpenid(code)
+    // const AppId = 'wx1c9ed47be21d5efb';
+    // const local = window.location.href;
+    // console.log('AppId',AppId)
+    // console.log('local',local)
+    // if(!local.includes('code')){
+    //   window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${AppId}&redirect_uri=${encodeURIComponent(local)}&response_type=code&connect_redirect=1&scope=snsapi_base&state=0&#wechat_redirect`
+    // }else{
+    //   var code = getUrlParam('code');
+    //   console.log(code)
+    //   alert(code)
+    //   this.getOpenid(code)
+    // }
     
   }
 }

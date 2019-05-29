@@ -11,7 +11,7 @@ import Bridge from './config/bridge.js'
 Vue.prototype.$bridge = Bridge
 
 //VantUI
-import { Tab, Tabs, Popup, Loading, DatetimePicker, Area, Lazyload, Picker } from 'vant';
+import { Tab, Tabs, Popup, Loading, DatetimePicker, Area, Lazyload, Picker, Dialog } from 'vant';
 Vue.use(Tab);
 Vue.use(Tabs);
 Vue.use(Popup);
@@ -20,6 +20,7 @@ Vue.use(DatetimePicker);
 Vue.use(Area);
 Vue.use(Lazyload);
 Vue.use(Picker);
+Vue.use(Dialog);
 
 // 注册全局过滤器
 Object.keys(filters).forEach(key => {

@@ -60,9 +60,10 @@
           <input type="text" placeholder="省市区选择" :value="selArea" readonly="readonly" @click="areaSelect">
         </dd>
       </dl>
-      <div class="confirmBtn" @click="submit">确认</div>
+      <!-- <div class="confirmBtn" @click="submit">确认</div> -->
+      <button class="confirmBtn" @click="submit" :disabled="disabled">确认</button>
     </div>
-    <van-popup v-model="show" position="bottom" :overlay="false">
+    <van-popup v-model="show" position="bottom" :overlay="true">
       <van-picker 
         v-show="genderSel" 
         :show-toolbar="true"
@@ -123,7 +124,8 @@ export default {
       rowState: '',
       postTime: '',
       orderCode: '',
-      openId: ''
+      openId: '',
+      disabled: false
     };
   },
   components:{
@@ -218,6 +220,7 @@ export default {
       console.log('rowState',this.rowState)
       console.log('orderCode',this.orderCode)
       console.log('typeof',typeof (this.userBirthday))
+      console.log('disabled',this.disabled)
       if(typeof (this.userBirthday) == 'number'){
         let thisYear = new Date().getFullYear()
         let birthYear = new Date(this.userBirthday).getFullYear()
@@ -229,7 +232,6 @@ export default {
         this.userAge = thisYear - birthYear
         console.log('userAge',this.userAge)
       }
-      
       if(
         this.staffCode !== '' &&
         this.userName !== '' &&
@@ -258,6 +260,7 @@ export default {
           }
         })
           .then(result => {
+            this.disabled = true
             console.log('submit-result',result);
             if (result.data.resultCode == "200"){
               var msg = result.data.data
@@ -269,8 +272,9 @@ export default {
             }
           })
           .catch(err => {
-            alert("网络请求超时！");
-            console.log("错误：提交数据异常" + err);
+            this.disabled = false
+            // alert("网络请求超时！");
+            alert("错误：提交数据异常" + err);
           });
       }else{
         alert("请将信息填写完整")

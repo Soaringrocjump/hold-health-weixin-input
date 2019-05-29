@@ -19,11 +19,12 @@
       <dl>
         <dt>性别<span class="nes">*</span></dt>
         <dd>
-          <!-- <span class="arrow"><img src="~IMG/down.png" alt=""></span> -->
-          <select v-model="userGender">
+          <span class="arrow"><img src="~IMG/down.png" alt=""></span>
+          <input type="text" placeholder="请选择您的性别" :value="userGender" readonly="readonly" @click="genderSelect">
+          <!-- <select v-model="userGender">
             <option value="男">男</option>
             <option value="女">女</option>
-          </select>
+          </select> -->
         </dd>
       </dl>
       <dl>
@@ -39,11 +40,18 @@
       <div class="confirmBtn" @click="submit">我要预约</div>
     </div>
     <van-popup v-model="show" position="bottom" :overlay="true">
+      <van-picker 
+        v-show="genderSel" 
+        :show-toolbar="true"
+        :columns="gender" 
+        @cancel="cancel" 
+        @confirm="genderConfirm" />
       <van-datetime-picker
+        v-show="birthSel" 
         v-model="currentDate"
         type="date"
-        @cancel="show = false" 
-        @confirm="onConfirm" 
+        @cancel="cancel" 
+        @confirm="birthConfirm" 
         :min-date="minDate"
         :max-date="maxDate"
       />
@@ -57,6 +65,9 @@ export default {
   data () {
     return {
       show: false,
+      genderSel: false,
+      birthSel: false,
+      gender: ['男','女'],
       currentDate: new Date(1980, 0, 1),
       minDate: new Date(1949, 0, 1),
       maxDate: new Date(),
@@ -73,15 +84,35 @@ export default {
     TopBg
   },
   methods:{
-    //点击生日
+    //取消
+    cancel(){
+      this.show = false
+      this.genderSel = false
+      this.birthSel = false
+    },
+    //选择性别
+    genderSelect(){
+      this.show = true
+      this.genderSel = true
+    },
+    //选择生日
     birthSelect(){
       this.show = true
+      this.birthSel = true
     },
-    //确认
-    onConfirm(val){
-      console.log('确认',val)
+    //性别确认
+    genderConfirm(val){
+      console.log('当前值',val)
+      this.userGender = val
+      this.genderSel = false
       this.show = false
+    },
+    //生日确认
+    birthConfirm(val){
+      console.log('确认',val)
       this.selBirth = val
+      this.birthSel = false
+      this.show = false
     },
     submit(){
       console.log('提交信息')
@@ -96,7 +127,6 @@ export default {
         this.userAge = thisYear - birthyear
         console.log('userAge',this.userAge)
       }
-      alert(this.userName,this.userGender,this.selBirth,this.remark,this.openId)
       if(
         this.staffCode !== '' &&
         this.userName !== '' &&
@@ -133,12 +163,18 @@ export default {
                 }
               })
             }else{
-              alert(result.data.message)
+              // alert(result.data.message)
+              this.$dialog.alert({
+                message: result.data.message
+              }).then(() => {
+                // on close
+              });
             }
           })
           .catch(err => {
             alert("网络请求超时！");
             // alert("错误：获取数据异常" + err);
+            
           });
       }else{
         alert("请将信息填写完整！")
@@ -183,5 +219,16 @@ export default {
 }
 .van-cell:not(:last-child):after {
   border-bottom: 0;
+}
+.van-dialog__header{
+  font-size: 32px;
+}
+.van-dialog__message{
+  font-size: 32px;
+}
+.van-button{
+  font-size: 32px;
+  height: 80px;
+  line-height: 80px;
 }
 </style>

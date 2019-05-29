@@ -9,11 +9,12 @@ const request = axios.create({
     // baseURL: 'http://39.100.58.46:8000', 
     baseURL: 'https://m.hfieta.com/web2/',
     // baseURL: 'http://39.98.71.27:8861',
+    // baseURL: 'http://39.100.58.46:8861',
+    // baseURL: 'https://report.guanqi2019.com',
     timeout: 10000, // 请求超时
     headers: {
         'content-type': 'application/json;charset=UTF-8',
         'token': localStorage.getItem('authorization')  
-        // 'token': '2dbe6524c2864873b92cd4d73512a6fe' 
     }
 })
 //添加请求拦截器
