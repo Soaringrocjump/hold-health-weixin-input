@@ -30,6 +30,7 @@
       <dl>
         <dt>生日<span class="nes">*</span></dt>
         <dd>
+          <span class="arrow"><img src="~IMG/down.png" alt=""></span>
           <input type="text" placeholder="请输入您的生日" :value="selBirth | formatterDate" readonly="readonly" @click="birthSelect">
         </dd>
       </dl>
@@ -39,7 +40,7 @@
       </dl>
       <div class="confirmBtn" @click="submit">我要预约</div>
     </div>
-    <van-popup v-model="show" position="bottom" :overlay="true">
+    <van-popup v-model="show" position="bottom" :overlay="true" :close-on-click-overlay="false">
       <van-picker 
         v-show="genderSel" 
         :show-toolbar="true"

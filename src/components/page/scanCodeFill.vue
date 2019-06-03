@@ -63,7 +63,7 @@
       <!-- <div class="confirmBtn" @click="submit">确认</div> -->
       <button class="confirmBtn" @click="submit" :disabled="disabled">确认</button>
     </div>
-    <van-popup v-model="show" position="bottom" :overlay="true">
+    <van-popup v-model="show" position="bottom" :overlay="true" :close-on-click-overlay="false">
       <van-picker 
         v-show="genderSel" 
         :show-toolbar="true"
