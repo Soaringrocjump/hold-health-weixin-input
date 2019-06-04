@@ -1,7 +1,7 @@
 <!-- 操作视频 -->
 <template>
   <div class="guide">
-    <ul class="video-list" v-if="orgCode && orgCode.includes('CPIC')">
+    <ul class="video-list" v-if="$route.query.orgCode && $route.query.orgCode.includes('CPIC')">
       <a href="http://video.guanqi2019.com/video/z1.mp4">
       <li><i class="iconfont icon-748bianjiqi_shipin"></i>智能面访信息录入操作流程.mp4</li>
       </a>
@@ -26,23 +26,6 @@
       <li><i class="iconfont icon-748bianjiqi_shipin"></i>检测报告转发流程.mp4</li>
       </a>
      </ul>
-    <!--<ul class="video-list" v-else>
-      <a href="http://video.guanqi2019.com/video/t.mp4">
-      <li><i class="iconfont icon-748bianjiqi_shipin"></i>邀约贴转发+客户录入流程.mp4</li>
-      </a>
-      <a href="http://video.guanqi2019.com/video/z1.mp4">
-      <li><i class="iconfont icon-748bianjiqi_shipin"></i>健康检测操作流程.mp4</li>
-      </a>
-      <a href="http://video.guanqi2019.com/video/z2.mp4">
-      <li><i class="iconfont icon-748bianjiqi_shipin"></i>检测报告转发流程.mp4</li>
-      </a>
-      <a href="http://video.guanqi2019.com/video/y.mp4">
-      <li><i class="iconfont icon-748bianjiqi_shipin"></i>邀约贴分享+信息确认录入.mp4</li>
-      </a>
-      <a href="http://video.guanqi2019.com/video/b.mp4">
-      <li><i class="iconfont icon-748bianjiqi_shipin"></i>报告分享视频-1.mp4</li>
-      </a>
-    </ul> -->
   </div>
 </template>
 
@@ -50,11 +33,7 @@
 export default {
   data () {
     return {
-      orgCode: ''
     };
-  },
-  mounted(){
-    this.orgCode = this.$route.query.orgCode
   }
 }
 
