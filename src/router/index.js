@@ -53,6 +53,12 @@ export default new Router({
       name: 'operateGuide',
       component: () => import ("@/components/page/operateGuide")
     },
+    //操作指南2-月卡政策
+    {
+      path: '/operateGuide2',
+      name: 'operateGuide2',
+      component: () => import ("@/components/page/operateGuide2")
+    },
     //活动分析
     {
       path: '/activityAnalysis',
