@@ -90,6 +90,7 @@ export default {
         left: 50%;
         bottom: -15px;
         content: "";
+        transform: translateX(-50%);
         width: 0;
         height: 0;
         z-index: 1;
