@@ -65,6 +65,7 @@ export default {
       staffCode: '',
       openId: '',
       remark: '',
+      serviceExtras: '',
       imageList: [
         {
           path: require('@/assets/img/hold-health1.png')
@@ -90,7 +91,8 @@ export default {
         path: '/fillAppointment',
         query:{
           staffCode: this.staffCode,
-          openId: this.openId
+          openId: this.openId,
+          serviceExtras: this.serviceExtras
         }
       })
     },
@@ -139,7 +141,8 @@ export default {
     this.staffCode = this.$route.query.staffCode
     this.openId = this.$route.query.openId
     this.remark = this.$route.query.remark
-    console.log("url参数staffCode",this.staffCode,"url参数openId",this.openId,"url参数remark",this.remark)
+    this.serviceExtras = this.$route.query.serviceExtras
+    console.log("url参数staffCode",this.staffCode,"url参数openId",this.openId,"url参数remark",this.remark,"url参数serviceExtras",this.serviceExtras)
     var code = getUrlParam('code');
     console.log(code)
     // alert(code)

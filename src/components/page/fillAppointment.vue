@@ -78,7 +78,8 @@ export default {
       selBirth: '',
       userAge: '',
       remark: '',
-      openId: ''
+      openId: '',
+      serviceExtras: ''
     };
   },
   components:{
@@ -147,7 +148,8 @@ export default {
             userAge: this.userAge,
             remark: this.remark,
             wxOpenid: this.openId,
-            customerCode: this.openId
+            customerCode: this.openId,
+            serviceExtras: this.serviceExtras
           }
         })
           .then(result => {
@@ -183,12 +185,12 @@ export default {
     }
   },
   mounted(){
-    let staffCode = this.$route.query.staffCode
-    console.log("获取地址栏参数staffCode",staffCode)
-    this.staffCode = staffCode
-    let openId = this.$route.query.openId
-    console.log("获取地址栏参数openId",openId)
-    this.openId = openId
+    this.staffCode = this.$route.query.staffCode
+    console.log("获取地址栏参数staffCode",this.staffCode)
+    this.openId = this.$route.query.openId
+    console.log("获取地址栏参数openId",this.openId)
+    this.serviceExtras = this.$route.query.serviceExtras
+    console.log("获取地址栏参数serviceExtras",this.serviceExtras)
   }
 }
 

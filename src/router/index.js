@@ -71,5 +71,11 @@ export default new Router({
       name: 'usageAnalysis',
       component: () => import ("@/components/page/usageAnalysis")
     },
+    //营养师介绍
+    {
+      path: '/dietitian',
+      name: 'dietitian',
+      component: () => import ("@/components/page/dietitian")
+    },
   ]
 })
