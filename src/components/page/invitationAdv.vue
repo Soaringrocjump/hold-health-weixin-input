@@ -38,15 +38,33 @@
         <!-- <li  v-for="(item,index) in serviceList" :key="index" v-if="service.includes(item.serviceName)">
           <img :src="item.serviceImg" alt="">
         </li> -->
-        <li>
+        <li v-if="serviceExtras.includes('01')">
           <div class="service-control">
-            <div class="left-img"><img src="~IMG/invitation-service5.png" alt=""></div>
+            <div class="left-img"><img src="~IMG/invitation-service1.png" alt=""></div>
             <div :class="[ visible ? 'rotate-up' : '','right-control']" @click="control"><img src="~IMG/invitation-arrow.png" alt=""></div>
           </div>
           <div :class="[ visible ? 'collapse-open' : 'collapse-close','service-collapse']">
             <div class="collapse-box">
               <img v-for="(img,index) in imageList" :key="index" :src="img.path" >
             </div>
+          </div>
+        </li>
+        <li v-if="serviceExtras.includes('02')">
+          <div class="service-control">
+            <div class="left-img"><img src="~IMG/invitation-service2.png" alt=""></div>
+            <div class="right-control"><img src="~IMG/invitation-arrow.png" alt=""></div>
+          </div>
+        </li>
+        <li v-if="serviceExtras.includes('03')">
+          <div class="service-control">
+            <div class="left-img"><img src="~IMG/invitation-service3.png" alt=""></div>
+            <div class="right-control"><img src="~IMG/invitation-arrow.png" alt=""></div>
+          </div>
+        </li>
+        <li v-if="serviceExtras.includes('04')">
+          <div class="service-control">
+            <div class="left-img"><img src="~IMG/invitation-service4.png" alt=""></div>
+            <div class="right-control"><img src="~IMG/invitation-arrow.png" alt=""></div>
           </div>
         </li>
       </ul>

@@ -247,13 +247,14 @@
     border:1px solid rgba(232, 232, 232, 1);
     box-shadow:4px 3px 20px 0px rgba(0, 0, 0, 0.25);
     border-radius:25px;
-    padding: 36px 0 38px;
+    padding: 16px 0 18px;
     overflow: hidden;
     li{
       // height: 155px;
       // display: flex;
       // justify-content: space-between;
       // align-items: center;
+      padding: 20px 0;
       .service-control{
         width: 100%;
         padding: 0 30px;
@@ -291,9 +292,9 @@
         display: none;
       }
     }
-    // li~li{
-    //   border-top: 1px solid #DADADA;
-    // }
+    li~li{
+      border-top: 1px solid #DADADA;
+    }
   }
   .block{
     background: #fff;
