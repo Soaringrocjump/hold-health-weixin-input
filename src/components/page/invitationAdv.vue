@@ -81,7 +81,7 @@ export default {
       activeNames: '1',
       visible: false,
       staffCode: '',
-      openId: '',
+      openid: '',
       remark: '',
       serviceExtras: '',
       imageList: [
@@ -109,7 +109,7 @@ export default {
         path: '/fillAppointment',
         query:{
           staffCode: this.staffCode,
-          openId: this.openId,
+          openid: this.openid,
           serviceExtras: this.serviceExtras
         }
       })
@@ -126,15 +126,8 @@ export default {
         .then(result => {
           console.log('result',result);
           if (result.data.resultCode == "200"){
-            this.openId = result.data.data
-            // alert(this.openId)
-            // this.$dialog.alert({
-            //   message: '获取wxOpenId' + result.data.data
-            // }).then(() => {
-            //   // on close
-            // });
+            this.openid = result.data.data
           }else{
-            // alert(result.data.message)
             this.$dialog.alert({
               message: '错误' + result.data.message
             }).then(() => {
@@ -144,7 +137,6 @@ export default {
         })
         .catch(err => {
           alert("获取wxOpenId失败！");
-          // alert(err);
           console.log("错误：获取数据异常" + err);
         });
     }
@@ -157,14 +149,13 @@ export default {
       return null
     }
     this.staffCode = this.$route.query.staffCode
-    this.openId = this.$route.query.openId
+    this.openid = this.$route.query.openid
     this.remark = this.$route.query.remark
     this.serviceExtras = this.$route.query.serviceExtras
-    console.log("url参数staffCode",this.staffCode,"url参数openId",this.openId,"url参数remark",this.remark,"url参数serviceExtras",this.serviceExtras)
-    var code = getUrlParam('code');
-    console.log(code)
-    // alert(code)
-    this.getOpenid(code)
+    console.log("url参数staffCode",this.staffCode,"url参数openid",this.openid,"url参数remark",this.remark,"url参数serviceExtras",this.serviceExtras)
+    // var code = getUrlParam('openid');
+    // console.log(code)
+    // this.getOpenid(code)
     // const AppId = 'wx1c9ed47be21d5efb';
     // const local = window.location.href;
     // console.log('AppId',AppId)

@@ -78,7 +78,7 @@ export default {
       selBirth: '',
       userAge: '',
       remark: '',
-      openId: '',
+      openid: '',
       serviceExtras: ''
     };
   },
@@ -122,7 +122,7 @@ export default {
       console.log('userGender',this.userGender)
       console.log('selBirth',this.selBirth)
       console.log('remark',this.remark)
-      console.log('openId',this.openId)
+      console.log('openid',this.openid)
       if(this.selBirth){
         let thisYear = new Date().getFullYear()
         let birthyear = this.selBirth.getFullYear()
@@ -147,8 +147,8 @@ export default {
             userBirthday: this.selBirth,
             userAge: this.userAge,
             remark: this.remark,
-            wxOpenid: this.openId,
-            customerCode: this.openId,
+            wxOpenid: this.openid,
+            customerCode: this.openid,
             serviceExtras: this.serviceExtras
           }
         })
@@ -187,8 +187,8 @@ export default {
   mounted(){
     this.staffCode = this.$route.query.staffCode
     console.log("获取地址栏参数staffCode",this.staffCode)
-    this.openId = this.$route.query.openId
-    console.log("获取地址栏参数openId",this.openId)
+    this.openid = this.$route.query.openid
+    console.log("获取地址栏参数openid",this.openid)
     this.serviceExtras = this.$route.query.serviceExtras
     console.log("获取地址栏参数serviceExtras",this.serviceExtras)
   }
