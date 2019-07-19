@@ -81,6 +81,7 @@ export default {
       activeNames: '1',
       visible: false,
       staffCode: '',
+      code: '',
       openid: '',
       remark: '',
       serviceExtras: '',
@@ -149,13 +150,15 @@ export default {
       return null
     }
     this.staffCode = this.$route.query.staffCode
+    this.code = this.$route.query.code
     this.openid = this.$route.query.openid
     this.remark = this.$route.query.remark
     this.serviceExtras = this.$route.query.serviceExtras
-    console.log("url参数staffCode",this.staffCode,"url参数openid",this.openid,"url参数remark",this.remark,"url参数serviceExtras",this.serviceExtras)
-    // var code = getUrlParam('openid');
-    // console.log(code)
-    // this.getOpenid(code)
+    this.code = getUrlParam('code');
+    console.log("参数staffCode",this.staffCode,"参数code",this.code,"参数openid",this.openid,"参数remark",this.remark,"参数serviceExtras",this.serviceExtras)
+    if(this.code){
+      this.getOpenid(code)
+    }
     // const AppId = 'wx1c9ed47be21d5efb';
     // const local = window.location.href;
     // console.log('AppId',AppId)
@@ -168,7 +171,6 @@ export default {
     //   alert(code)
     //   this.getOpenid(code)
     // }
-    
   }
 }
 
