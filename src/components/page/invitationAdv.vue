@@ -125,9 +125,10 @@ export default {
         url: "wx/getOpenId?code="+code,
       })
         .then(result => {
-          console.log('result',result);
+          console.log('获取openid-result',result);
           if (result.data.resultCode == "200"){
             this.openid = result.data.data
+            console.log('获取openid',this.openid)
           }else{
             this.$dialog.alert({
               message: '错误' + result.data.message
@@ -157,7 +158,7 @@ export default {
     this.code = getUrlParam('code');
     console.log("参数staffCode",this.staffCode,"参数code",this.code,"参数openid",this.openid,"参数remark",this.remark,"参数serviceExtras",this.serviceExtras)
     if(this.code){
-      this.getOpenid(code)
+      this.getOpenid(this.code)
     }
     // const AppId = 'wx1c9ed47be21d5efb';
     // const local = window.location.href;
