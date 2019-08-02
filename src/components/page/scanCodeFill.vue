@@ -124,7 +124,8 @@ export default {
       rowState: '',
       postTime: '',
       orderCode: '',
-      openId: '',
+      openid: '',
+      serviceExtras: '',
       disabled: false
     };
   },
@@ -256,7 +257,8 @@ export default {
             userWeight: this.userWeight,
             userNation: this.userNation,
             orderCode: this.orderCode,
-            wxOpenid: this.openId
+            serviceExtras: this.serviceExtras,
+            wxopenid: this.openid
           }
         })
           .then(result => {
@@ -345,13 +347,16 @@ export default {
       console.log("getInfo",this.orderCode)
       this.getInfo(this.orderCode)
     }
-    if(query.openId){
-      this.openId = query.openId
+    if(query.openid){
+      this.openid = query.openid
     }
     if(query.staffCode){
       this.staffCode = query.staffCode
     }
-    console.log("获取地址栏参数",this.orderCode,this.openId,this.staffCode)
+    if(query.serviceExtras){
+      this.serviceExtras = query.serviceExtras
+    }
+    console.log("获取地址栏参数",this.orderCode,this.openid,this.staffCode)
   }
 }
 </script>

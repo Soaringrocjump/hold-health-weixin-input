@@ -35,10 +35,18 @@
     <p class="intro">免费上门为您提供以下服务项目</p>
     <div class="service-list">
       <ul>
-        <!-- <li  v-for="(item,index) in serviceList" :key="index" v-if="service.includes(item.serviceName)">
-          <img :src="item.serviceImg" alt="">
-        </li> -->
-        <li v-if="serviceExtras.includes('01')">
+        <li>
+          <div class="service-control">
+            <div class="left-img"><img src="~IMG/invitation-service1.png" alt=""></div>
+            <div :class="[ visible ? 'rotate-up' : '','right-control']" @click="control"><img src="~IMG/invitation-arrow.png" alt=""></div>
+          </div>
+          <div :class="[ visible ? 'collapse-open' : 'collapse-close','service-collapse']">
+            <div class="collapse-box">
+              <img v-for="(img,index) in imageList" :key="index" :src="img.path" >
+            </div>
+          </div>
+        </li>
+        <!-- <li v-if="serviceExtras.includes('01')">
           <div class="service-control">
             <div class="left-img"><img src="~IMG/invitation-service1.png" alt=""></div>
             <div :class="[ visible ? 'rotate-up' : '','right-control']" @click="control"><img src="~IMG/invitation-arrow.png" alt=""></div>
@@ -66,7 +74,7 @@
             <div class="left-img"><img src="~IMG/invitation-service4.png" alt=""></div>
             <div class="right-control"><img src="~IMG/invitation-arrow.png" alt=""></div>
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
     <div class="confirmBtn" @click="jump" >我要预约</div>
@@ -152,7 +160,7 @@ export default {
     }
     this.staffCode = this.$route.query.staffCode
     this.code = this.$route.query.code
-    this.openid = this.$route.query.openid
+    this.openid = this.$route.query.openId
     this.remark = this.$route.query.remark
     this.serviceExtras = this.$route.query.serviceExtras
     this.code = getUrlParam('code');
