@@ -35,7 +35,7 @@
     <p class="intro">免费上门为您提供以下服务项目</p>
     <div class="service-list">
       <ul>
-        <li>
+        <!-- <li>
           <div class="service-control">
             <div class="left-img"><img src="~IMG/invitation-service1.png" alt=""></div>
             <div :class="[ visible ? 'rotate-up' : '','right-control']" @click="control"><img src="~IMG/invitation-arrow.png" alt=""></div>
@@ -45,8 +45,8 @@
               <img v-for="(img,index) in imageList" :key="index" :src="img.path" >
             </div>
           </div>
-        </li>
-        <!-- <li v-if="serviceExtras.includes('01')">
+        </li> -->
+        <li v-if="serviceExtras.includes('01')">
           <div class="service-control">
             <div class="left-img"><img src="~IMG/invitation-service1.png" alt=""></div>
             <div :class="[ visible ? 'rotate-up' : '','right-control']" @click="control"><img src="~IMG/invitation-arrow.png" alt=""></div>
@@ -74,7 +74,7 @@
             <div class="left-img"><img src="~IMG/invitation-service4.png" alt=""></div>
             <div class="right-control"><img src="~IMG/invitation-arrow.png" alt=""></div>
           </div>
-        </li> -->
+        </li>
       </ul>
     </div>
     <div class="confirmBtn" @click="jump" >我要预约</div>

@@ -126,6 +126,7 @@ export default {
       orderCode: '',
       openid: '',
       serviceExtras: '',
+      unionid: '',
       disabled: false
     };
   },
@@ -246,7 +247,7 @@ export default {
         console.log("输入完成")
         this.$axios({
           method: "post",
-          url: "order/orderEdit?rowState="+this.rowState+"&userAddress="+this.selArea,
+          url: "order/orderEdit?rowState="+this.rowState+"&userAddress="+this.selArea+"&unionid="+this.unionid,
           data: {
             staffCode: this.staffCode,
             userName: this.userName.trim(),
@@ -258,7 +259,7 @@ export default {
             userNation: this.userNation,
             orderCode: this.orderCode,
             serviceExtras: this.serviceExtras,
-            wxopenid: this.openid
+            wxOpenid: this.openid
           }
         })
           .then(result => {
@@ -356,7 +357,10 @@ export default {
     if(query.serviceExtras){
       this.serviceExtras = query.serviceExtras
     }
-    console.log("获取地址栏参数",this.orderCode,this.openid,this.staffCode)
+    if(query.unionid){
+      this.unionid = query.unionid
+    }
+    console.log("获取地址栏参数",this.orderCode,this.openid,this.staffCode,this.unionid)
   }
 }
 </script>

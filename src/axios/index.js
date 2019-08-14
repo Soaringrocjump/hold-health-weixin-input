@@ -5,8 +5,8 @@ import axios from 'axios';
 // axios.defaults.timeout = 5000
 
 const request = axios.create({
-    baseURL: 'http://47.98.201.36:8861/', //测试地址
-    // baseURL: 'http://39.100.58.46:8000', 
+    // baseURL: 'http://47.98.201.36:8861/', //测试地址
+    baseURL: 'https://m.guanqi2019.com/wxTest/',  //测试地址
     // baseURL: 'https://m.hfieta.com/web2/', //正式地址
     // baseURL: 'http://39.98.71.27:8861',
     // baseURL: 'http://39.100.58.46:8861',
