@@ -1,16 +1,11 @@
 <!-- 填写预约信息 -->
 <template>
   <div class="fillAppointment">
-    <TopBg>
-      <div class="slogan">
-        <img src="~IMG/login-slogan.png" alt="">
-      </div>
-    </TopBg>
-    <div class="invitation-info">客户预约登记</div> 
     <div class="gradient-txt2">
-      <img src="~IMG/invitation-txt2.png" alt="">
+      <img src="~IMG/logo1.png" alt="">
     </div>
-    <p>健康服务专员<span class="officer">{{staffCode}}</span>为您服务</p>
+    <p>欢迎使用观禾在线健康预约平台</p>
+    <div class="cut-line"></div>
     <div class="fill-info">
       <dl>
         <dt>姓名<span class="nes">*</span></dt>

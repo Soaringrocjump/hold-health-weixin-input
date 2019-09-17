@@ -21,7 +21,7 @@ export default {
         }
       ]
     };
-  },
+  }
 }
 
 </script>
@@ -29,5 +29,9 @@ export default {
 .dietitian{
   position: relative;
   width: 750px;
+  .iconfont{
+    font-size: 36px;
+    margin: 6px 10px;
+  }
 }
 </style>
