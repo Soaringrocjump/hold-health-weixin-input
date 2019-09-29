@@ -1,6 +1,6 @@
 /* 邀约填写 */
 .fillAppointment,.scanCodeFill{
-  padding: 40px 100px 30px;
+  // padding: 40px 100px 30px;
   .slogan{
     width: 522px;
     margin: 66px auto;
@@ -88,6 +88,7 @@
       width:556px;
       height:104px;
       line-height:104px;
+      border: none;
       background:linear-gradient(0deg,rgba(124,30,203,1),rgba(193,135,242,1));
       box-shadow:0px 2px 0px 0px rgba(255,255,255,0.31);
       border-radius: 104px;
@@ -98,9 +99,13 @@
     }
   }
 }
+.fillAppointment{
+  padding: 40px 100px 30px;
+}
 .scanCodeFill{
   .fill-info{
     background: transparent;
+    padding: 40px 100px 30px;
   }
 } 
 .fillSuccess{
@@ -149,17 +154,28 @@
   }
 }
 .invitationAdv{
-  padding-bottom: 93px;
+  padding-bottom: 240px;
   .top-intro{
     position: relative;
     background:#fff;
     .commissioner{
       position: absolute;
-      left: 65px;
-      top: 1280px;
+      left: 70px;
+      top: 1100px;
       font-size: 36px;
       color: #fff;
       font-weight: bold;
+    }
+    .appointment-remark{
+      position: absolute;
+      left: 75px;
+      top: 560px;
+      width:610px;
+      line-height: 45px;
+      font-size: 28px;
+      color: #fff;
+      text-align: justify;
+      letter-spacing: 2px;
     }
   }
   .slogan{
@@ -190,18 +206,7 @@
         }
       }
     }
-    .appointment-remark{
-      width:680px;
-      min-height:288px;
-      margin: 35px auto;
-      background:linear-gradient(84deg,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 100%);
-      border:2px solid rgba(228, 229, 233, 1);
-      border-radius:25px;
-      padding: 32px 35px;
-      font-size: 28px;
-      color: #777;
-      text-align: justify;
-    }
+    
     // .personal-info{
     //   height: 146px;
     //   padding: 0 35px 0 25px;
@@ -394,5 +399,93 @@
     font-size: 45px;
     text-align: center;
     margin: 38px auto 0;
+  }
+  .bottomBtn{
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding-top: 5px;
+    dl{
+      height: 160px;
+      width: 50%;
+      padding: 15px 0;
+      text-align: center;
+      font-size: 40px;
+      .iconfont{
+        font-size: 60px;
+      }
+    }
+    .leftHalf{
+      background: linear-gradient(45deg,#ff3d5d 55%,#ff7505);;
+      color: #fff;
+      .iconfont{
+        font-weight: bold;
+        transform: rotateY(180deg)
+      }
+    }
+    .rightHalf{
+      background: #e3e3e3;
+      color: #777;
+    }
+  }
+  .overlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background:rgba(0,0,0,0.7);
+    overflow: hidden;
+    .share{
+      width: 620px;
+      height: 471px;
+      position: absolute;
+      top: 0;
+      right: 44px;
+    }
+    .order{
+      position: relative;
+      width: 460px;
+      height: 919px;
+      margin: 97px auto;
+      .QRcode{
+        position: absolute;
+        top: 102px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 221px;
+        height: 221px;
+        background: #fff;
+      }
+      .txt{
+        position: absolute;
+        top: 653px;
+        width: 100%;
+        text-align: center;
+        font-size: 28px;
+        color: #fff;
+      }
+      .txt2{
+        position: absolute;
+        top: 700px;
+        width: 100%;
+        text-align: center;
+        font-size: 36px;
+        color: #fff;
+        font-weight: bold;
+      }
+      .closeBtn{
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+      }
+    }
   }
 }

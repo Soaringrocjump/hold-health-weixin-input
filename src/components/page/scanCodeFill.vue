@@ -9,7 +9,7 @@
     <div class="invitation-info">客户信息登记</div> 
     <div class="fill-info">
       <dl>
-        <dt>您的专属健康专员工号</dt>
+        <dt>您的专属服务专员工号</dt>
         <dd><input type="text" class="disabled-input" placeholder="" :value="staffCode" disabled></dd>
       </dl>
       <dl>
